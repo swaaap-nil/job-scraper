@@ -1,7 +1,8 @@
 # Job Scraper 
 
 Scrap Jobs from various sources and save them to DB.
-
+![Alt text](./HLD.svg)
+<img src="./hld.svg">
 ----
 
 Here are the steps for getting your system initially setup.
