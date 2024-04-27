@@ -1,21 +1,6 @@
-# Web Scraping Boilerplate
+# Job Scraper 
 
-[👉 Read more about this repository here.](https://blog.hartleybrody.com/web-scraping-boilerplate/)
-
-In the spirit of my [flask boilerplate](https://github.com/hartleybrody/flask-boilerplate) project, I figured it would be helpful to create a web scraping boilerplate repo. This will contain all of the common, generic helpers that I use on most scraping efforts to help get new projects off the ground faster.
-
-Specifically, it helps with:
-
- - using a database to store scraped data
- - helpers for making requests and handling network errors
- - getting python packages installed (requests, beautiful soup)
- - setting up redis to manage a queue of work
- - rotating proxies and detecting ones that aren't working
- - keeping track of which data was collected when
- - managing changes to the database model over time
-
-There's nothing specific to scraping one particular site in here, all of this functionality is agnostic to the target site. This makes it useful as a base for any new scraping project, where it's collecting data from retailers, government sites or social networks.
-
+Scrap Jobs from various sources and save them to DB.
 
 ----
 
@@ -26,22 +11,28 @@ This project assumes you already have [virtualenv, virtualenvwrapper](http://doc
 
 First, create a new virtual environment:
 
-    mkvirtualenv {{PROJECT_SLUG}}
+    $ mkvirtualenv jobscraper
+    $ virtualenv activate
 
 Then, install the required python dependencies
 
-    pip install -r requirements.txt
+    $ pip install -r requirements.txt
 
 ### Setup local postgres database
-Create the database locally
-
-    psql -h localhost -d postgres
+Run a postgres instance locally ( depends on your operating system. For mac its ```brew services start postgres``` ). Once done do the following:
+    
+    //connect to the postgres using psql
+    $ psql -h localhost -d postgres
 
     psql (10.1)
     Type "help" for help.
 
-    postgres=# CREATE DATABASE {{PROJECT_SLUG}};
+    //create DB called jobscraper
+    postgres=# CREATE DATABASE jobscraper;
     CREATE DATABASE
+
+    //create user postgres
+    postgres=# CREATE USER postgres WITH LOGIN PASSWORD 'postgres'    
 
 
 ### Setup local redis server
@@ -57,7 +48,7 @@ Once you've got redis installed on your system, start the local server in the ba
 
 
 ### Run database migrations
-Detect changes to `models.py` and generate a timestamped migration file
+Detect changes to `models.py` and generate a timestamped migration file. To do so create a folder named ```versions``` inside ```alembic``` folder and run the following:
 
     alembic revision --autogenerate
 
