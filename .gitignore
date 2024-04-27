@@ -1,0 +1,8 @@
+.env
+.todo
+*.pyc
+*.csv
+input/
+output/*
+alembic/versions/
+__pycache__/
