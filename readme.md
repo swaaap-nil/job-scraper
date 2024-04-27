@@ -1,7 +1,7 @@
 # Job Scraper 
 
 Scrap Jobs from various sources and save them to DB.
-![Alt text](./HLD.svg)
+
 <img src="./hld.svg">
 ----
 
